@@ -885,19 +885,6 @@ para agendar a reunião mais importante com você.</p></div></div></div><div cla
 <option value="Acima de R$ 1 milhão">Acima de R$ 1 milhão</option>
 </select></div>
 </div>
-<div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-desafio elementor-col-100 elementor-field-required">
-<label for="form-field-desafio" class="elementor-field-label elementor-screen-only">Qual seu maior desafio hoje?</label>
-<div class="elementor-field elementor-select-wrapper remove-before "><div class="select-caret-down-wrapper">
-<svg aria-hidden="true" class="e-font-icon-svg e-eicon-caret-down" viewBox="0 0 571.4 571.4" xmlns="http://www.w3.org/2000/svg"><path d="M571 393Q571 407 561 418L311 668Q300 679 286 679T261 668L11 418Q0 407 0 393T11 368 36 357H536Q550 357 561 368T571 393Z"></path></svg></div>
-<select name="desafio" id="form-field-desafio" class="elementor-field-textual elementor-size-sm" required="required">
-<option value="" disabled selected>Selecionar desafio</option>
-<option value="Gerar mais leads qualificados">Gerar mais leads qualificados</option>
-<option value="Estruturar marketing e marca">Estruturar marketing e marca</option>
-<option value="Aumentar vendas e previsibilidade">Aumentar vendas e previsibilidade</option>
-<option value="Profissionalizar conteúdo e audiovisual">Profissionalizar conteúdo e audiovisual</option>
-<option value="Implementar CRM, IA e automação">Implementar CRM, IA e automação</option>
-</select></div>
-</div>
 <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
 <button class="elementor-button elementor-size-sm" type="submit" data-lead-submit>
 <span class="elementor-button-content-wrapper">
@@ -1102,7 +1089,6 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
       empresa: values.empresa,
       faturamento: values.faturamento,
       segmento: values.segmento,
-      desafio: values.desafio,
       ...utms,
     };
     const ghlPayload = {
@@ -1112,7 +1098,6 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
       company_name: values.empresa,
       revenue: values.faturamento,
       segment: values.segmento,
-      challenge: values.desafio,
       source: SOURCE,
       timestamp,
       utm_source: utms.utm_source,
@@ -1161,11 +1146,10 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
         empresa: String(fd.get("empresa") || "").trim(),
         faturamento: String(fd.get("faturamento") || "").trim(),
         segmento: String(fd.get("segmento") || "").trim(),
-        desafio: String(fd.get("desafio") || "").trim(),
       };
       if (
         !values.nome || !values.email || !values.whatsapp || !values.empresa ||
-        !values.faturamento || !values.segmento || !values.desafio
+        !values.faturamento || !values.segmento
       ) {
         if (note) {
           note.hidden = false;
