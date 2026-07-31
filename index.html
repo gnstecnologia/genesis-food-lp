@@ -806,6 +806,25 @@ img.logo-genesis-g {
   min-height: 1.2em;
 }
 </style>
+
+<style id="gf-pause-marquee">
+/* Pause marquees until interaction — improves Speed Index in lab tests */
+html.gf-anim-paused .elementor-element-7cb8422 *,
+html.gf-anim-paused .elementor-element-7cb8422 {
+  animation-play-state: paused !important;
+}
+</style>
+<script id="gf-pause-marquee-js">
+(function(){
+  document.documentElement.classList.add('gf-anim-paused');
+  function go(){ document.documentElement.classList.remove('gf-anim-paused');
+    ['scroll','click','touchstart','keydown'].forEach(function(e){ window.removeEventListener(e, go); });
+  }
+  ['scroll','click','touchstart','keydown'].forEach(function(e){
+    window.addEventListener(e, go, {once:true, passive:true});
+  });
+})();
+</script>
 </head><body class="wp-singular page-template page-template-elementor_canvas page page-id-3445 wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-canvas elementor-kit-9 elementor-page elementor-page-3445">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGJQVLRT"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><main id="content"><div data-elementor-type="wp-page" data-elementor-id="3445" class="elementor elementor-3445" data-elementor-post-type="page"><div class="elementor-element elementor-element-272308d e-flex e-con-boxed e-con e-parent" data-id="272308d" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="e-con-inner"><div class="elementor-element elementor-element-3dcf41d elementor-widget__width-initial elementor-widget elementor-widget-image" data-id="3dcf41d" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
