@@ -1,0 +1,20 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Temp scripts
+_*.py
+_*.txt
+*.pyc
+__pycache__/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel
