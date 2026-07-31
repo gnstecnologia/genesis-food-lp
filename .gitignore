@@ -19,4 +19,15 @@ __pycache__/
 # Vercel
 .vercel
 
-.vercel
+# Hostinger deploy / local deps
+node_modules/
+package.json
+package-lock.json
+*.zip
+deploy-hostinger.cjs
+deploy-hostinger.mjs
+
+_psi_*.json
+*.bak-psi
+_optimize_psi.py
+index.html.bak*
