@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Obrigado | Genesis Food</title>
+<title>Diagnóstico recebido | Genesis Food</title>
+<meta name="robots" content="noindex" />
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -12,72 +13,212 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-K36ZGK4W');</script>
 <!-- End Google Tag Manager -->
 <link rel="icon" href="./wp-content/uploads/2025/10/logo-genesis-g-favicon.png" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet" />
-<style>
-  :root { --black:#000; --white:#fff; --muted:#8e8e8e; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    font-family: "Montserrat", sans-serif;
-    background-color: #ffffff;
-    background-image: url("./wp-content/uploads/2025/10/hero-bg-g.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: var(--black);
-    padding: 32px 20px;
-    text-align: center;
-  }
-  .card {
-    width: min(560px, 100%);
-  }
-  img.logo {
-    height: 56px;
-    width: auto;
-    filter: invert(1);
-    margin-bottom: 28px;
-  }
-  h1 {
-    font-size: clamp(28px, 5vw, 42px);
-    font-weight: 800;
-    line-height: 1.15;
-    margin: 0 0 14px;
-    text-transform: uppercase;
-  }
-  p {
-    margin: 0 auto 28px;
-    max-width: 42ch;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-  }
-  a.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    padding: 16px 28px;
-    border-radius: 10px;
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./assets/css/obrigado.css" />
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K36ZGK4W"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-  <div class="card">
-    <img class="logo" src="./wp-content/uploads/2025/10/logo-genesis.png" alt="Genesis Company" />
-    <h1>Recebemos seu contato</h1>
-    <p>Em breve um especialista da Genesis Food entra em contato para o seu diagnóstico. Fique de olho no WhatsApp e no e-mail.</p>
-    <a class="btn" href="./index.html">Voltar para o início</a>
+
+<div class="obrigado-banner">
+  Solução estratégica para empresas que faturam acima de <strong>R$ 50 mil</strong> por mês
+</div>
+
+<main class="obrigado">
+  <div class="obrigado__check" aria-hidden="true">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <path d="m9 11 3 3L22 4" />
+    </svg>
   </div>
+
+  <h1>Recebemos seu <span>diagnóstico!</span></h1>
+
+  <p>
+    Nossa equipe analisará suas informações e entrará em contato em breve.
+    Agende agora um horário com a equipe comercial — ou fale direto no WhatsApp.
+  </p>
+
+  <section class="obrigado__cal" aria-label="Agendar reunião">
+    <h2 class="obrigado__cal-title">Escolha um horário</h2>
+    <p class="obrigado__cal-sub">Selecione o dia e o melhor horário para a reunião.</p>
+    <div class="obrigado__cal-frame">
+      <div id="my-cal-inline-agenda-comercial"></div>
+    </div>
+  </section>
+
+  <a
+    class="obrigado__wa"
+    href="https://wa.me/5521996526969?text=Ol%C3%A1%21%20Acabei%20de%20preencher%20o%20diagn%C3%B3stico%20e%20n%C3%A3o%20quero%20perder%20tempo.%20Quero%20falar%20com%20um%20especialista."
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>Não quero perder tempo |<br />falar com especialista</span>
+  </a>
+
+  <a class="obrigado__back" href="./index.html">Voltar ao site →</a>
+</main>
+
+<footer class="obrigado-footer">
+  © <span id="y"></span> Genesis Company · CNPJ 52.906.973/0001-98
+</footer>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) {
+      a.q.push(ar);
+    };
+    let d = C.document;
+    C.Cal =
+      C.Cal ||
+      function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () {
+            p(api, arguments);
+          };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", "agenda-comercial", { origin: "https://app.cal.com" });
+  Cal.config = Cal.config || {};
+  Cal.config.forwardQueryParams = true;
+
+  var genesisCalTheme = {
+    "cal-brand": "#ff4202",
+    "cal-brand-emphasis": "#ff7040",
+    "cal-brand-text": "#ffffff",
+    "cal-brand-subtle": "#e63a00",
+    "cal-brand-accent": "#ffffff",
+    "cal-text": "#d5d2cb",
+    "cal-text-emphasis": "#f3f0ea",
+    "cal-text-subtle": "#a8b0aa",
+    "cal-text-muted": "#7d8680",
+    "cal-text-inverted": "#0c1210",
+    "cal-text-semantic-info": "#2dd4a8",
+    "cal-text-semantic-attention": "#fbbf24",
+    "cal-text-semantic-error": "#fb7185",
+    "cal-text-info": "#2dd4a8",
+    "cal-text-success": "#2dd4a8",
+    "cal-text-attention": "#fbbf24",
+    "cal-text-error": "#fb7185",
+    "cal-bg": "#0c1210",
+    "cal-bg-emphasis": "#1a2420",
+    "cal-bg-subtle": "#15201c",
+    "cal-bg-muted": "#101816",
+    "cal-bg-inverted": "#f3f0ea",
+    "cal-bg-attention": "#3a2208",
+    "cal-bg-error": "#3a1218",
+    "cal-bg-semantic-info-subtle": "#0f2a24",
+    "cal-bg-semantic-attention-subtle": "#2a1a08",
+    "cal-bg-semantic-error-subtle": "#2a1014",
+    "cal-border": "rgba(255,255,255,0.12)",
+    "cal-border-emphasis": "#ff4202",
+    "cal-border-subtle": "rgba(255,255,255,0.08)",
+    "cal-border-muted": "rgba(255,255,255,0.05)",
+    "cal-border-error": "#fb7185",
+    "cal-border-semantic-error": "#fb7185",
+    "cal-border-semantic-attention-subtle": "#fbbf24",
+    "cal-border-semantic-error-subtle": "#fb7185",
+    "cal-border-booker": "rgba(255,66,2,0.45)",
+    "cal-border-booker-width": "1px",
+    radius: "0.75rem",
+  };
+
+  Cal.ns["agenda-comercial"]("inline", {
+    elementOrSelector: "#my-cal-inline-agenda-comercial",
+    config: {
+      layout: "month_view",
+      useSlotsViewOnSmallScreen: "false",
+      theme: "dark",
+      "ui.color-scheme": "dark",
+      "ui.autoscroll": "false",
+      hideBranding: true,
+    },
+    calLink: "yago-nogueira/agenda-comercial",
+  });
+
+  Cal.ns["agenda-comercial"]("ui", {
+    theme: "dark",
+    colorScheme: "dark",
+    hideEventTypeDetails: true,
+    showTimezoneWhenEventDetailsHidden: true,
+    hideBranding: true,
+    layout: "month_view",
+    styles: {
+      branding: { brandColor: "#ff4202" },
+      body: { background: "transparent" },
+    },
+    cssVarsPerTheme: {
+      light: genesisCalTheme,
+      dark: genesisCalTheme,
+    },
+  });
+
+  function fitCalHeight(height) {
+    var host = document.getElementById("my-cal-inline-agenda-comercial");
+    if (!host || !height) return;
+    var h = Math.ceil(Number(height));
+    if (!Number.isFinite(h) || h < 240) return;
+    var brandCrop = 52;
+    host.style.minHeight = Math.max(240, h - brandCrop) + "px";
+    host.style.overflow = "hidden";
+    var iframe = host.querySelector("iframe");
+    if (iframe) {
+      iframe.style.height = h + "px";
+      iframe.style.marginBottom = "-" + brandCrop + "px";
+      iframe.setAttribute("scrolling", "no");
+    }
+  }
+
+  Cal.ns["agenda-comercial"]("on", {
+    action: "dimensionChanged",
+    callback: function (e) {
+      var data = (e && e.detail && e.detail.data) || (e && e.data) || {};
+      fitCalHeight(data.iframeHeight || data.height);
+    },
+  });
+
+  window.setTimeout(function () {
+    var host = document.getElementById("my-cal-inline-agenda-comercial");
+    var iframe = host && host.querySelector("iframe");
+    if (!iframe) return;
+    iframe.setAttribute("scrolling", "no");
+    iframe.style.overflow = "hidden";
+    var h = parseInt(iframe.style.height, 10) || iframe.offsetHeight;
+    if (h) fitCalHeight(h);
+  }, 800);
+  window.setTimeout(function () {
+    var host = document.getElementById("my-cal-inline-agenda-comercial");
+    var iframe = host && host.querySelector("iframe");
+    var h = iframe && (parseInt(iframe.style.height, 10) || iframe.offsetHeight);
+    if (h) fitCalHeight(h);
+  }, 2000);
+</script>
 </body>
 </html>
