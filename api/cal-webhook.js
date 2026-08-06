@@ -107,11 +107,15 @@ function pickBooking(data) {
 }
 
 async function findContactByEmail(locationId, email) {
-  const url = new URL(`${GHL_BASE}/contacts/`);
-  url.searchParams.set("locationId", locationId);
-  url.searchParams.set("email", email);
-  url.searchParams.set("limit", "1");
-  const res = await fetch(url, { headers: ghlHeaders() });
+  const res = await fetch(`${GHL_BASE}/contacts/search`, {
+    method: "POST",
+    headers: ghlHeaders(),
+    body: JSON.stringify({
+      locationId,
+      pageLimit: 1,
+      filters: [{ field: "email", operator: "eq", value: email }],
+    }),
+  });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) {
     throw new Error(`GHL search failed (${res.status}): ${JSON.stringify(body)}`);
