@@ -109,6 +109,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   Cal.config = Cal.config || {};
   Cal.config.forwardQueryParams = true;
 
+  var qs = new URLSearchParams(window.location.search);
+  var lead = {
+    nome: qs.get("nome") || "",
+    email: qs.get("email") || "",
+    whatsapp: qs.get("whatsapp") || "",
+  };
+  var CAL_BRIDGE_URL = "https://genesis-food-lp.vercel.app/api/cal-webhook";
+
+  function notifyGhlBooking(payload) {
+    var body = Object.assign(
+      {
+        source: "embed",
+        action: "bookingSuccessful",
+        email: lead.email,
+        nome: lead.nome,
+        name: lead.nome,
+        whatsapp: lead.whatsapp,
+        phone: lead.whatsapp,
+      },
+      payload || {}
+    );
+    try {
+      fetch(CAL_BRIDGE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   var genesisCalTheme = {
     "cal-brand": "#ff4202",
     "cal-brand-emphasis": "#ff7040",
@@ -150,16 +181,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     radius: "0.75rem",
   };
 
+  var calConfig = {
+    layout: "month_view",
+    useSlotsViewOnSmallScreen: "false",
+    theme: "dark",
+    "ui.color-scheme": "dark",
+    "ui.autoscroll": "false",
+    hideBranding: true,
+  };
+  if (lead.nome) calConfig.name = lead.nome;
+  if (lead.email) calConfig.email = lead.email;
+  if (lead.whatsapp) {
+    calConfig.attendeePhoneNumber = lead.whatsapp.startsWith("+")
+      ? lead.whatsapp
+      : "+55" + lead.whatsapp.replace(/\D/g, "");
+  }
+
   Cal.ns["agenda-comercial"]("inline", {
     elementOrSelector: "#my-cal-inline-agenda-comercial",
-    config: {
-      layout: "month_view",
-      useSlotsViewOnSmallScreen: "false",
-      theme: "dark",
-      "ui.color-scheme": "dark",
-      "ui.autoscroll": "false",
-      hideBranding: true,
-    },
+    config: calConfig,
     calLink: "yago-nogueira/agenda-comercial",
   });
 
@@ -201,6 +241,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     callback: function (e) {
       var data = (e && e.detail && e.detail.data) || (e && e.data) || {};
       fitCalHeight(data.iframeHeight || data.height);
+    },
+  });
+
+  // Quando o lead conclui o agendamento no embed
+  Cal.ns["agenda-comercial"]("on", {
+    action: "bookingSuccessful",
+    callback: function (e) {
+      var data = (e && e.detail && e.detail.data) || (e && e.data) || {};
+      notifyGhlBooking({
+        triggerEvent: "BOOKING_CREATED",
+        email: data.email || lead.email,
+        name: data.name || lead.nome,
+        phone: data.phone || lead.whatsapp,
+        startTime: data.startTime || data.start || "",
+        endTime: data.endTime || data.end || "",
+        title: data.title || "Agenda comercial",
+        uid: data.uid || data.bookingId || "",
+        data: data,
+      });
     },
   });
 

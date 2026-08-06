@@ -1181,7 +1181,12 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
       if (label) label.textContent = "Enviando...";
       try {
         await submitLeadForm(values);
-        window.location.assign(THANKS_URL);
+        var q = new URLSearchParams({
+          email: values.email,
+          nome: values.nome,
+          whatsapp: values.whatsapp,
+        });
+        window.location.assign(THANKS_URL + "?" + q.toString());
       } catch (err) {
         if (label) label.textContent = "Receber mais informações";
         if (btn) btn.disabled = false;
