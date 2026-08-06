@@ -3,14 +3,14 @@
  *
  * Receives Cal.com webhooks (BOOKING_CREATED) and/or embed callbacks,
  * finds the contact in GHL by email and:
- *  - adds tag "Agendou Cal.com"
+ *  - adds tag "agendado"
  *  - creates a note with booking details
  *  - optionally forwards to GHL inbound webhook for workflows
  *
  * Env (Vercel):
  *  GHL_API_TOKEN
  *  GHL_LOCATION_ID
- *  GHL_BOOKING_TAG (optional, default: "Agendou Cal.com")
+ *  GHL_BOOKING_TAG (optional, default: "agendado")
  *  GHL_WEBHOOK_URL (optional)
  *  CAL_WEBHOOK_SECRET (optional)
  */
@@ -163,7 +163,7 @@ async function upsertContact(locationId, booking) {
       email: booking.email || undefined,
       phone: booking.phone || undefined,
       source: "Cal.com | Genesis Food",
-      tags: [process.env.GHL_BOOKING_TAG || "Agendou Cal.com"],
+      tags: [process.env.GHL_BOOKING_TAG || "agendado"],
     }),
   });
   const body = await res.json().catch(() => ({}));
@@ -218,7 +218,7 @@ async function forwardWebhook(booking, contact) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       event: "cal_booking",
-      tag: process.env.GHL_BOOKING_TAG || "Agendou Cal.com",
+      tag: process.env.GHL_BOOKING_TAG || "agendado",
       contactId: contact?.id || "",
       email: booking.email,
       full_name: booking.name,
@@ -256,7 +256,7 @@ module.exports = async function handler(req, res) {
       return json(res, 400, { error: "Missing attendee email", booking });
     }
 
-    const tag = process.env.GHL_BOOKING_TAG || "Agendou Cal.com";
+    const tag = process.env.GHL_BOOKING_TAG || "agendado";
     const contact = await upsertContact(process.env.GHL_LOCATION_ID, booking);
     const contactId = contact.id || contact.contact?.id;
     if (!contactId) {
