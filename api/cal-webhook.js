@@ -124,11 +124,31 @@ async function findContactByEmail(locationId, email) {
   return contacts[0] || null;
 }
 
+async function findContactByPhone(locationId, phone) {
+  if (!phone) return null;
+  const res = await fetch(`${GHL_BASE}/contacts/search`, {
+    method: "POST",
+    headers: ghlHeaders(),
+    body: JSON.stringify({
+      locationId,
+      pageLimit: 1,
+      filters: [{ field: "phone", operator: "eq", value: phone }],
+    }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) return null;
+  const contacts = body.contacts || [];
+  return contacts[0] || null;
+}
+
 async function upsertContact(locationId, booking) {
-  const existing = booking.email
+  const byEmail = booking.email
     ? await findContactByEmail(locationId, booking.email)
     : null;
-  if (existing?.id) return existing;
+  if (byEmail?.id) return byEmail;
+
+  const byPhone = await findContactByPhone(locationId, booking.phone);
+  if (byPhone?.id) return byPhone;
 
   const nameParts = booking.name.split(/\s+/).filter(Boolean);
   const firstName = nameParts[0] || "Lead";
@@ -147,6 +167,10 @@ async function upsertContact(locationId, booking) {
     }),
   });
   const body = await res.json().catch(() => ({}));
+  // Location blocks duplicates — reuse the matched contact from GHL meta
+  if (!res.ok && body?.meta?.contactId) {
+    return { id: body.meta.contactId, name: body.meta.contactName || "" };
+  }
   if (!res.ok) {
     throw new Error(`GHL create failed (${res.status}): ${JSON.stringify(body)}`);
   }
