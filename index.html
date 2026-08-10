@@ -1061,11 +1061,17 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
     "https://script.google.com/macros/s/AKfycbzsi3ptbQUBGXwULTfNdru30BLRUiGD_DTSz-1UkU_y6NrT0obKNIIFM4uAN8Sg1VHx/exec";
   const GHL_WEBHOOK =
     "https://services.leadconnectorhq.com/hooks/3PX64HuGchlu0IkZet5Z/webhook-trigger/YXnc32VOmV3WvZmpuQfs";
+  const TAG_MQL_URL = "https://genesis-food-lp.vercel.app/api/tag-mql";
   const SOURCE = "Landing Page Genesis Food";
   const THANKS_URL = "./obrigado.html";
+  const NON_MQL_FATURAMENTO = "Até R$ 50 mil";
   const UTM_KEYS = [
     "utm_source", "utm_medium", "utm_campaign", "utm_id", "utm_term", "utm_content",
   ];
+
+  function isMqlFaturamento(faturamento) {
+    return String(faturamento || "").trim() !== NON_MQL_FATURAMENTO;
+  }
 
   function captureUtms() {
     const params = new URLSearchParams(window.location.search);
@@ -1100,6 +1106,7 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
   async function submitLeadForm(values) {
     const utms = getUtms();
     const timestamp = new Date().toLocaleString("pt-BR");
+    const mql = isMqlFaturamento(values.faturamento);
     const sheetsPayload = {
       timestamp,
       nome: values.nome,
@@ -1108,6 +1115,7 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
       empresa: values.empresa,
       faturamento: values.faturamento,
       segmento: values.segmento,
+      mql: mql ? "sim" : "nao",
       ...utms,
     };
     const ghlPayload = {
@@ -1119,6 +1127,9 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
       segment: values.segmento,
       source: SOURCE,
       timestamp,
+      is_mql: mql,
+      mql: mql,
+      tags: mql ? ["MQL"] : [],
       utm_source: utms.utm_source,
       utm_medium: utms.utm_medium,
       utm_campaign: utms.utm_campaign,
@@ -1138,6 +1149,28 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
         body: JSON.stringify(ghlPayload),
       }),
     ]);
+    // Agenda tag MQL via API ~3 min depois (só se faturamento da 2ª opção pra cima)
+    if (mql) {
+      try {
+        try {
+          sessionStorage.setItem("gf_mql_scheduled_" + values.email.toLowerCase(), "1");
+        } catch (e) {}
+        fetch(TAG_MQL_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: values.email,
+            phone: values.whatsapp,
+            whatsapp: values.whatsapp,
+            faturamento: values.faturamento,
+            mql: true,
+            delayMs: 180000,
+          }),
+          keepalive: true,
+        }).catch(function () {});
+      } catch (e) {}
+    }
+    return { mql: mql };
   }
 
   captureUtms();
@@ -1180,11 +1213,13 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
       if (btn) btn.disabled = true;
       if (label) label.textContent = "Enviando...";
       try {
-        await submitLeadForm(values);
+        var submitResult = await submitLeadForm(values);
         var q = new URLSearchParams({
           email: values.email,
           nome: values.nome,
           whatsapp: values.whatsapp,
+          faturamento: values.faturamento,
+          mql: submitResult && submitResult.mql ? "1" : "0",
         });
         window.location.assign(THANKS_URL + "?" + q.toString());
       } catch (err) {

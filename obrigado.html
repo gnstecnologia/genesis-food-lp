@@ -114,8 +114,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     nome: qs.get("nome") || "",
     email: qs.get("email") || "",
     whatsapp: qs.get("whatsapp") || "",
+    faturamento: qs.get("faturamento") || "",
+    mql: qs.get("mql") === "1",
   };
   var CAL_BRIDGE_URL = "https://genesis-food-lp.vercel.app/api/cal-webhook";
+  var TAG_MQL_URL = "https://genesis-food-lp.vercel.app/api/tag-mql";
+
+  // Backup: se veio como MQL e o job ainda não foi agendado no submit
+  (function scheduleMqlTag() {
+    if (!lead.mql || (!lead.email && !lead.whatsapp)) return;
+    var key = "gf_mql_scheduled_" + String(lead.email || lead.whatsapp).toLowerCase();
+    try {
+      if (sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key, "1");
+    } catch (e) {}
+    try {
+      fetch(TAG_MQL_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: lead.email,
+          phone: lead.whatsapp,
+          whatsapp: lead.whatsapp,
+          faturamento: lead.faturamento,
+          mql: true,
+          delayMs: 180000,
+        }),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
+  })();
 
   function notifyGhlBooking(payload) {
     var body = Object.assign(
