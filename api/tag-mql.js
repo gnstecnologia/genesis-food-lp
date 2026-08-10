@@ -1,7 +1,8 @@
 /**
  * Agenda tag MQL no GHL após o lead entrar pelo webhook do formulário.
  *
- * Regra: MQL se faturamento !== "Até R$ 50 mil"
+ * Regra: MQL a partir de "50 mil até 80 mil" (inclusive).
+ * Não MQL: "Até 30 mil" e "30 mil até 50 mil".
  * Fluxo: espera ~3 min (lead cria no GHL) → busca por e-mail/telefone → tag MQL
  *
  * Env: GHL_API_TOKEN, GHL_LOCATION_ID, GHL_MQL_TAG (default: MQL)
@@ -10,37 +11,16 @@ const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
 const DEFAULT_DELAY_MS = 3 * 60 * 1000;
 const MAX_DELAY_MS = 4 * 60 * 1000;
-const NON_MQL_REVENUE = "Até R$ 50 mil";
 const MQL_REVENUES = [
-  "R$ 50 mil a R$ 200 mil",
-  "R$ 200 mil a R$ 500 mil",
-  "R$ 500 mil a R$ 1 milhão",
-  "Acima de R$ 1 milhão",
+  "50 mil até 80 mil",
+  "80 mil até 100 mil",
+  "100 mil até 150 mil",
+  "150 mil até 250 mil",
+  "250 mil até 400 mil",
+  "400 mil até 600 mil",
+  "600 mil até 1 milhão",
+  "Mais de 1 milhão",
 ];
-
-function normalizeRevenue(v) {
-  return String(v || "")
-    .trim()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, " ");
-}
-
-function isMqlRevenue(faturamento) {
-  var raw = String(faturamento || "").trim();
-  if (!raw) return false;
-  if (MQL_REVENUES.includes(raw)) return true;
-  var v = normalizeRevenue(raw);
-  if (!v) return false;
-  // 1ª opção: Até R$ 50 mil → NÃO MQL
-  if (v.startsWith("ate") && v.includes("50 mil") && !v.includes(" a ")) return false;
-  if (v.includes("50 mil a") || v.includes("200 mil") || v.includes("500 mil") || v.includes("1 milh")) {
-    return true;
-  }
-  if (v.includes("acima de")) return true;
-  return false;
-}
 
 function json(res, status, body) {
   res.statusCode = status;
@@ -87,7 +67,7 @@ function normalizePhone(phone) {
 function isMqlRevenue(faturamento) {
   var v = String(faturamento || "").trim();
   if (!v) return false;
-  return v !== NON_MQL_REVENUE;
+  return MQL_REVENUES.includes(v);
 }
 
 async function searchContacts(locationId, filters) {
@@ -190,7 +170,7 @@ module.exports = async function handler(req, res) {
       skipped: true,
       reason: "not_mql",
       faturamento,
-      nonMqlValue: NON_MQL_REVENUE,
+      mqlValues: MQL_REVENUES,
     });
   }
 

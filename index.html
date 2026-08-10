@@ -896,12 +896,17 @@ para agendar a reunião mais importante com você.</p></div></div></div><div cla
 <div class="elementor-field elementor-select-wrapper remove-before "><div class="select-caret-down-wrapper">
 <svg aria-hidden="true" class="e-font-icon-svg e-eicon-caret-down" viewBox="0 0 571.4 571.4" xmlns="http://www.w3.org/2000/svg"><path d="M571 393Q571 407 561 418L311 668Q300 679 286 679T261 668L11 418Q0 407 0 393T11 368 36 357H536Q550 357 561 368T571 393Z"></path></svg></div>
 <select name="faturamento" id="form-field-faturamento" class="elementor-field-textual elementor-size-sm" required="required">
-<option value="" disabled selected>Selecionar faturamento</option>
-<option value="Até R$ 50 mil">Até R$ 50 mil</option>
-<option value="R$ 50 mil a R$ 200 mil">R$ 50 mil a R$ 200 mil</option>
-<option value="R$ 200 mil a R$ 500 mil">R$ 200 mil a R$ 500 mil</option>
-<option value="R$ 500 mil a R$ 1 milhão">R$ 500 mil a R$ 1 milhão</option>
-<option value="Acima de R$ 1 milhão">Acima de R$ 1 milhão</option>
+<option value="" disabled selected>Selecionar</option>
+<option value="Até 30 mil">Até 30 mil</option>
+<option value="30 mil até 50 mil">30 mil até 50 mil</option>
+<option value="50 mil até 80 mil">50 mil até 80 mil</option>
+<option value="80 mil até 100 mil">80 mil até 100 mil</option>
+<option value="100 mil até 150 mil">100 mil até 150 mil</option>
+<option value="150 mil até 250 mil">150 mil até 250 mil</option>
+<option value="250 mil até 400 mil">250 mil até 400 mil</option>
+<option value="400 mil até 600 mil">400 mil até 600 mil</option>
+<option value="600 mil até 1 milhão">600 mil até 1 milhão</option>
+<option value="Mais de 1 milhão">Mais de 1 milhão</option>
 </select></div>
 </div>
 <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
@@ -1064,21 +1069,23 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
   const TAG_MQL_URL = "https://genesis-food-lp.vercel.app/api/tag-mql";
   const SOURCE = "Landing Page Genesis Food";
   const THANKS_URL = "./obrigado.html";
-  const NON_MQL_FATURAMENTO = "Até R$ 50 mil";
+  const MQL_FATURAMENTOS = [
+    "50 mil até 80 mil",
+    "80 mil até 100 mil",
+    "100 mil até 150 mil",
+    "150 mil até 250 mil",
+    "250 mil até 400 mil",
+    "400 mil até 600 mil",
+    "600 mil até 1 milhão",
+    "Mais de 1 milhão",
+  ];
   const UTM_KEYS = [
     "utm_source", "utm_medium", "utm_campaign", "utm_id", "utm_term", "utm_content",
   ];
 
   function isMqlFaturamento(faturamento) {
     var raw = String(faturamento || "").trim();
-    if (!raw || raw === NON_MQL_FATURAMENTO) return false;
-    var mqlValues = [
-      "R$ 50 mil a R$ 200 mil",
-      "R$ 200 mil a R$ 500 mil",
-      "R$ 500 mil a R$ 1 milhão",
-      "Acima de R$ 1 milhão",
-    ];
-    return mqlValues.indexOf(raw) !== -1;
+    return MQL_FATURAMENTOS.indexOf(raw) !== -1;
   }
 
   function captureUtms() {
