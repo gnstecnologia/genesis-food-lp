@@ -11,6 +11,36 @@ const GHL_VERSION = "2021-07-28";
 const DEFAULT_DELAY_MS = 3 * 60 * 1000;
 const MAX_DELAY_MS = 4 * 60 * 1000;
 const NON_MQL_REVENUE = "Até R$ 50 mil";
+const MQL_REVENUES = [
+  "R$ 50 mil a R$ 200 mil",
+  "R$ 200 mil a R$ 500 mil",
+  "R$ 500 mil a R$ 1 milhão",
+  "Acima de R$ 1 milhão",
+];
+
+function normalizeRevenue(v) {
+  return String(v || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ");
+}
+
+function isMqlRevenue(faturamento) {
+  var raw = String(faturamento || "").trim();
+  if (!raw) return false;
+  if (MQL_REVENUES.includes(raw)) return true;
+  var v = normalizeRevenue(raw);
+  if (!v) return false;
+  // 1ª opção: Até R$ 50 mil → NÃO MQL
+  if (v.startsWith("ate") && v.includes("50 mil") && !v.includes(" a ")) return false;
+  if (v.includes("50 mil a") || v.includes("200 mil") || v.includes("500 mil") || v.includes("1 milh")) {
+    return true;
+  }
+  if (v.includes("acima de")) return true;
+  return false;
+}
 
 function json(res, status, body) {
   res.statusCode = status;
@@ -167,6 +197,7 @@ module.exports = async function handler(req, res) {
   let delayMs = Number(data.delayMs);
   if (!Number.isFinite(delayMs)) delayMs = DEFAULT_DELAY_MS;
   delayMs = Math.max(0, Math.min(MAX_DELAY_MS, Math.floor(delayMs)));
+  const forceSync = data.sync === true || data.sync === 1 || data.sync === "1";
 
   const job = {
     email,
@@ -183,7 +214,7 @@ module.exports = async function handler(req, res) {
     waitUntil = null;
   }
 
-  if (typeof waitUntil === "function") {
+  if (!forceSync && typeof waitUntil === "function") {
     waitUntil(runDelayedTag(job));
     return json(res, 202, {
       ok: true,
@@ -195,7 +226,7 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  // Fallback: mantém a execução viva até terminar (precisa maxDuration >= delay)
+  // Sync / fallback: mantém a execução viva até terminar (precisa maxDuration >= delay)
   const result = await runDelayedTag(job);
   return json(res, result.ok ? 200 : 404, {
     scheduled: false,

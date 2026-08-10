@@ -1070,7 +1070,15 @@ lazyloadBackgroundObserver.unobserve(entry.target)}})},{rootMargin:'200px 0px 20
   ];
 
   function isMqlFaturamento(faturamento) {
-    return String(faturamento || "").trim() !== NON_MQL_FATURAMENTO;
+    var raw = String(faturamento || "").trim();
+    if (!raw || raw === NON_MQL_FATURAMENTO) return false;
+    var mqlValues = [
+      "R$ 50 mil a R$ 200 mil",
+      "R$ 200 mil a R$ 500 mil",
+      "R$ 500 mil a R$ 1 milhão",
+      "Acima de R$ 1 milhão",
+    ];
+    return mqlValues.indexOf(raw) !== -1;
   }
 
   function captureUtms() {
