@@ -41,6 +41,14 @@ function applyVariant(html, variant) {
     'const SOURCE = "Landing Page Genesis Food";',
     `const SOURCE = ${JSON.stringify(variant.source)};`
   );
+  if (variant.extraCss) {
+    const cssTag = `<style id="gf-variant-css">${variant.extraCss}</style>`;
+    if (out.includes("</head>")) {
+      out = out.replace("</head>", cssTag + "</head>");
+    } else {
+      out += cssTag;
+    }
+  }
   return out;
 }
 
