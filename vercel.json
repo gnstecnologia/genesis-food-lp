@@ -10,6 +10,28 @@
       "maxDuration": 30
     }
   },
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "foodgrowth.companygenesis.com.br" }],
+      "destination": "/index.foodgrowth.html"
+    },
+    {
+      "source": "/index.html",
+      "has": [{ "type": "host", "value": "foodgrowth.companygenesis.com.br" }],
+      "destination": "/index.foodgrowth.html"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "foodscale.companygenesis.com.br" }],
+      "destination": "/index.foodscale.html"
+    },
+    {
+      "source": "/index.html",
+      "has": [{ "type": "host", "value": "foodscale.companygenesis.com.br" }],
+      "destination": "/index.foodscale.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

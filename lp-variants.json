@@ -1,0 +1,31 @@
+{
+  "variants": [
+    {
+      "id": "foods",
+      "domain": "foods.companygenesis.com.br",
+      "source": "Landing Page Genesis Food",
+      "title": "Marketing para Restaurantes | Genesis Food",
+      "headlineHtml": "FAZEMOS SEU RESTAURANTE VENDER <span style=\"font-weight:800\">+ 397 NOVOS PEDIDOS POR MÊS</span> COM NOSSO MÉTODO",
+      "subHtml": "Esse resultado é gerado com o método <span style=\"font-weight:800\">Empilhamento de Receita</span>, validado com dezenas de restaurantes e garantimos esse resultado em até 90 dias",
+      "indexOut": "index.html"
+    },
+    {
+      "id": "foodgrowth",
+      "domain": "foodgrowth.companygenesis.com.br",
+      "source": "Landing Page Genesis Food | Foodgrowth",
+      "title": "Genesis Food | Restaurantes +R$100 mil/mês",
+      "headlineHtml": "GENESIS FOOD | PARA RESTAURANTES QUE FATURAM <span style=\"font-weight:800\">+R$100 MIL/MÊS</span><br>SUA OPERAÇÃO JÁ FATURA <span style=\"font-weight:800\">+R$100 MIL/MÊS</span>.<br>MAS VOCÊ SABE COMO LEVÁ-LA PARA O PRÓXIMO NÍVEL?",
+      "subHtml": "A Gauro Pizzaria já ultrapassa R$600 mil em faturamento mensal. Conheça a metodologia por trás dessa construção e como conectamos marca, conteúdo, tráfego, dados, vendas e recorrência para construir crescimento",
+      "indexOut": "index.foodgrowth.html"
+    },
+    {
+      "id": "foodscale",
+      "domain": "foodscale.companygenesis.com.br",
+      "source": "Landing Page Genesis Food | Foodscale",
+      "title": "Genesis Food | Operação +R$600 mil/mês",
+      "headlineHtml": "FAÇA COMO A GAURO PIZZARIA:<br>CONSTRUA UMA OPERAÇÃO CAPAZ DE FATURAR <span style=\"font-weight:800\">+R$600 MIL/MÊS</span>.",
+      "subHtml": "Sua pizzaria ou restaurante já fatura mais de R$100 mil por mês, mas você sente que não sabe qual é o próximo passo para escalar? Conheça a metodologia que conecta marca, conteúdo, tráfego, dados, vendas e recorrência para construir o próximo nível da sua operação.",
+      "indexOut": "index.foodscale.html"
+    }
+  ]
+}
