@@ -14,8 +14,9 @@
       "domain": "foodgrowth.companygenesis.com.br",
       "source": "Landing Page Genesis Food | Foodgrowth",
       "title": "Genesis Food | Restaurantes +R$100 mil/mês",
-      "headlineHtml": "PARA PIZZARIAS E RESTAURANTES QUE FATURAM <span style=\"font-weight:800\">+R$100 MIL/MÊS.</span><br>CHEGOU A HORA DE VOCÊ <span style=\"font-weight:800\">ESCALAR</span> A SUA <span style=\"font-weight:800\">OPERAÇÃO</span>",
-      "subHtml": "A Gauro Pizzaria já ultrapassa R$600 mil em faturamento mensal. Conheça a metodologia por trás dessa construção e como conectamos marca, conteúdo, tráfego, dados, vendas e recorrência para construir crescimento",
+      "headlineHtml": "<span class=\"gf-hero-line\">PARA <span style=\"font-weight:800\">PIZZARIAS</span> E <span style=\"font-weight:800\">RESTAURANTES</span> QUE</span><br><span class=\"gf-hero-line\">FATURAM <span style=\"font-weight:800\">+R$100 MIL/MÊS</span></span><br><span class=\"gf-hero-line\">CHEGOU A HORA DE VOCÊ</span><br><span class=\"gf-hero-line\"><span style=\"font-weight:800\">ESCALAR</span> A SUA <span style=\"font-weight:800\">OPERAÇÃO</span></span>",
+      "subHtml": "A <span style=\"font-weight:800\">Gauro</span> já ultrapassa <span style=\"font-weight:800\">R$600 mil/mês</span>. Conheça a estratégia por trás desse crescimento e veja como aplicar no seu restaurante.",
+      "extraCss": ".elementor-element-5e8d05b{width:min(94vw,980px)!important;max-width:94vw!important}.elementor-element-5e8d05b .elementor-heading-title{font-size:clamp(14px,3.5vw,38px)!important;line-height:1.15!important;letter-spacing:-0.03em!important}.elementor-element-5e8d05b .gf-hero-line{white-space:nowrap;display:inline-block;max-width:100%}.elementor-element-dbac0b5 .elementor-heading-title{font-size:clamp(13px,1.7vw,18px)!important;line-height:1.35!important}",
       "indexOut": "index.foodgrowth.html"
     },
     {
@@ -23,9 +24,9 @@
       "domain": "foodscale.companygenesis.com.br",
       "source": "Landing Page Genesis Food | Foodscale",
       "title": "Genesis Food | Operação +R$600 mil/mês",
-      "headlineHtml": "<span class=\"gf-hero-line\">PARA <span style=\"font-weight:800\">PIZZARIAS</span> E <span style=\"font-weight:800\">RESTAURANTES</span> QUE</span><br><span class=\"gf-hero-line\">FATURAM <span style=\"font-weight:800\">+R$100 MIL/MÊS</span></span><br><span class=\"gf-hero-line\">CHEGOU A HORA DE VOCÊ</span><br><span class=\"gf-hero-line\"><span style=\"font-weight:800\">ESCALAR</span> A SUA <span style=\"font-weight:800\">OPERAÇÃO</span>.</span>",
-      "subHtml": "A <span style=\"font-weight:800\">Gauro</span> já ultrapassa <span style=\"font-weight:800\">R$600 mil/mês</span>. Conheça a estratégia por trás desse crescimento e veja como aplicar no seu restaurante.",
-      "extraCss": ".elementor-element-5e8d05b{width:min(94vw,980px)!important;max-width:94vw!important}.elementor-element-5e8d05b .elementor-heading-title{font-size:clamp(14px,3.5vw,38px)!important;line-height:1.15!important;letter-spacing:-0.03em!important}.elementor-element-5e8d05b .gf-hero-line{white-space:nowrap;display:inline-block;max-width:100%}.elementor-element-dbac0b5 .elementor-heading-title{font-size:clamp(13px,1.7vw,18px)!important;line-height:1.35!important}",
+      "headlineHtml": "<span class=\"gf-hero-line\"><span style=\"font-weight:800\">FAÇA</span> COMO A <span style=\"font-weight:800\">GAURO PIZZARIA</span>:</span><br><span class=\"gf-hero-line\">CONSTRUA UMA OPERAÇÃO CAPAZ</span><br><span class=\"gf-hero-line\">DE FATURAR <span style=\"font-weight:800\">+R$600 MIL/MÊS</span></span>",
+      "subHtml": "Seu restaurante já vende. Agora é hora de construir a estrutura para <span style=\"font-weight:800\">escalar</span>.",
+      "extraCss": ".elementor-element-5e8d05b{width:min(94vw,980px)!important;max-width:94vw!important}.elementor-element-5e8d05b .elementor-heading-title{font-size:clamp(15px,3.9vw,40px)!important;line-height:1.15!important;letter-spacing:-0.03em!important}.elementor-element-5e8d05b .gf-hero-line{white-space:nowrap;display:inline-block;max-width:100%}.elementor-element-dbac0b5 .elementor-heading-title{font-size:clamp(13px,1.7vw,18px)!important;line-height:1.35!important}",
       "indexOut": "index.foodscale.html"
     }
   ]
