@@ -30,6 +30,14 @@
       "source": "/index.html",
       "has": [{ "type": "host", "value": "foodscale.companygenesis.com.br" }],
       "destination": "/index.foodscale.html"
+    },
+    {
+      "source": "/proximo-case",
+      "destination": "/index.proximocase.html"
+    },
+    {
+      "source": "/estrategia",
+      "destination": "/index.estrategia.html"
     }
   ],
   "headers": [
