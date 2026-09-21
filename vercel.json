@@ -33,13 +33,13 @@
     },
     {
       "source": "/",
-      "has": [{ "type": "host", "value": "proximocase.companygenesis.com.br" }],
-      "destination": "/index.proximocase.html"
+      "has": [{ "type": "host", "value": "foodcase.companygenesis.com.br" }],
+      "destination": "/index.foodcase.html"
     },
     {
       "source": "/index.html",
-      "has": [{ "type": "host", "value": "proximocase.companygenesis.com.br" }],
-      "destination": "/index.proximocase.html"
+      "has": [{ "type": "host", "value": "foodcase.companygenesis.com.br" }],
+      "destination": "/index.foodcase.html"
     },
     {
       "source": "/",
