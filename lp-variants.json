@@ -31,7 +31,7 @@
     },
     {
       "id": "proximocase",
-      "path": "/proximo-case",
+      "domain": "proximocase.companygenesis.com.br",
       "source": "Landing Page Genesis Food | Proximo Case",
       "title": "Genesis Food | Seja o Próximo Case",
       "bannerHtml": "Solução para pizzarias, hamburguerias e restaurantes que faturam acima de <strong>R$70 mil/mês</strong>",
@@ -43,7 +43,7 @@
     },
     {
       "id": "estrategia",
-      "path": "/estrategia",
+      "domain": "estrategia.companygenesis.com.br",
       "source": "Landing Page Genesis Food | Estrategia",
       "title": "Genesis Food | Estratégia dos Cases",
       "bannerHtml": "Solução para pizzarias, hamburguerias e restaurantes que faturam acima de <strong>R$70 mil/mês</strong>",

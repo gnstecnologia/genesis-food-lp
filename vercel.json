@@ -32,11 +32,23 @@
       "destination": "/index.foodscale.html"
     },
     {
-      "source": "/proximo-case",
+      "source": "/",
+      "has": [{ "type": "host", "value": "proximocase.companygenesis.com.br" }],
       "destination": "/index.proximocase.html"
     },
     {
-      "source": "/estrategia",
+      "source": "/index.html",
+      "has": [{ "type": "host", "value": "proximocase.companygenesis.com.br" }],
+      "destination": "/index.proximocase.html"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "estrategia.companygenesis.com.br" }],
+      "destination": "/index.estrategia.html"
+    },
+    {
+      "source": "/index.html",
+      "has": [{ "type": "host", "value": "estrategia.companygenesis.com.br" }],
       "destination": "/index.estrategia.html"
     }
   ],
